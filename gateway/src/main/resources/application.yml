@@ -29,3 +29,15 @@ spring:
           uri: lb://query
           predicates:
             - Path=/query/**
+
+management:
+  endpoint:
+    gateway:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include:
+          - "refresh"
+          - "busrefresh"
+          - "gateway"
