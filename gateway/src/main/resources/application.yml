@@ -1,0 +1,31 @@
+server:
+  port: 8001
+
+spring:
+  profiles:
+    active: dev
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      routes:
+        - id: user
+          uri: lb://user
+          predicates:
+            - Path=/user/**
+        - id: match
+          uri: lb://match
+          predicates:
+            - Path=/match/**
+        - id: marketing
+          uri: lb://marketing
+          predicates:
+            - Path=/marketing/**
+        - id: auth
+          uri: lb://auth
+          predicates:
+            - Path=/auth/**
+        - id: query
+          uri: lb://query
+          predicates:
+            - Path=/query/**
