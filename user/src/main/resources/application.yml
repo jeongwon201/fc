@@ -1,13 +1,27 @@
-spring:
-  profiles:
-    active: dev
-  application:
-    name: user
-
 server:
   port: 7000
+
+spring:
+  application:
+    name: user
+  profiles:
+    active: dev
+  config:
+    import: optional:configserver:http://localhost:8000
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
 
 eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - "busrefresh"
